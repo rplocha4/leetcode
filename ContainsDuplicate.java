@@ -1,26 +1,21 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
-class TwoSum {
+class ContainsDuplicate {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(twoSum(new int[] { 2, 7, 11, 15 }, 9)));
-        System.out.println(Arrays.toString(twoSum(new int[] { 3, 2, 4 }, 6)));
-        System.out.println(Arrays.toString(twoSum(new int[] { 3, 3 }, 6)));
+        System.out.println(containsDuplicate(new int[] { 1, 2, 3, 1 }));
+        System.out.println(containsDuplicate(new int[] { 1, 2, 3, 4 }));
+        System.out.println(containsDuplicate(new int[] { 1, 1, 1, 3, 3, 4, 3, 2, 4, 2 }));
 
     }
 
-    public static int[] twoSum(int[] nums, int target) {
+    public static boolean containsDuplicate(int[] nums) {
+        Set<Integer> hSet = new HashSet<>();
 
-        Map<Integer, Integer> hMap = new HashMap<>();
-
-        for (int i = 0; i < nums.length; i++) {
-            int val = target - nums[i];
-            if (hMap.containsKey(val))
-                return (new int[] { hMap.get(val), i });
-            hMap.put(nums[i], i);
+        for (int num : nums) {
+            if (!hSet.add(num))
+                return true;
         }
-        return new int[] {};
-
+        return false;
     }
 }
