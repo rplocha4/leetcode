@@ -8,29 +8,20 @@ class ValidPalindrome {
 
     public static boolean isPalindrome(String s) {
 
+        StringBuilder newS = new StringBuilder();
+
+        for (Character c : s.toCharArray())
+            if (Character.isLetterOrDigit(c))
+                newS.append(Character.toLowerCase(c));
+
         int l = 0;
-        int r = s.length() - 1;
+        int r = newS.length() - 1;
         while (l < r) {
-            char leftChar = Character.toLowerCase(s.charAt(l));
-            char rightChar = Character.toLowerCase(s.charAt(r));
-
-            while (!Character.isLetterOrDigit(leftChar)) {
-                l += 1;
-                leftChar = Character.toLowerCase(s.charAt(l));
-            }
-            while (!Character.isLetterOrDigit(rightChar)) {
-                r -= 1;
-                rightChar = Character.toLowerCase(s.charAt(r));
-            }
-
-            if (leftChar != rightChar)
+            if (newS.charAt(l) != newS.charAt(r))
                 return false;
-
             l += 1;
             r -= 1;
-
         }
         return true;
-
     }
 }
